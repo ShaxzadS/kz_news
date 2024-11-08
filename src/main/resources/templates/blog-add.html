@@ -1,0 +1,79 @@
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Добавить Пост</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                color: #4CAF50;
+            }
+            input[type="text"], textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            .error-message {
+                color: red;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+        </style>
+
+    </head>
+    <body>
+    <div class="container">
+        <h2>Добавить Пост</h2>
+        <form action="#" th:action="@{/blog/add}" th:object="${post}" method="post">
+            <div>
+                <label>Заголовок</label>
+                <input type="text" th:field="*{title}" />
+                <div th:if="${#fields.hasErrors('title')}" class="error-message" th:errors="*{title}"></div>
+            </div>
+            <div>
+                <label>Имя автора</label>
+                <input type="text" th:field="*{author_name}" />
+                <div th:if="${#fields.hasErrors('author_name')}" class="error-message" th:errors="*{author_name}"></div>
+            </div>
+            <div>
+                <label>Фамилия автора</label>
+                <input type="text" th:field="*{author_surname}" />
+                <div th:if="${#fields.hasErrors('author_surname')}" class="error-message" th:errors="*{author_surname}"></div>
+            </div>
+            <div>
+                <label>Текст</label>
+                <textarea th:field="*{full_text}"></textarea>
+                <div th:if="${#fields.hasErrors('full_text')}" class="error-message" th:errors="*{full_text}"></div>
+            </div>
+            <button type="submit">Добавить пост</button>
+        </form>
+    </div>
+
+    </body>
+    </html>
